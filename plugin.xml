@@ -59,4 +59,23 @@
 		<source-file src="platform/android/com/appmetrica/cordova/plugin/AppMetricaPlugin.java" target-dir="src/com/appmetrica/cordova/plugin" />
         <source-file src="platform/android/mobmetricalib-2.00.jar" target-dir="libs/"/>
     </platform>
+	
+	<!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="AppMetricaPlugin">
+                <param name="ios-package" value="AppMetricaPlugin" />
+            </feature>
+        </config-file>
+
+        <header-file src="platform/ios/AppMetricaPlugin.h" />
+        <header-file src="platform/ios/YandexMobileMetrica.h" />
+		<header-file src="platform/ios/YMMVersion.h" />
+		<header-file src="platform/ios/YMMYandexMetrica.h" />		
+		
+        <source-file src="platform/ios/AppMetricaPlugin.m" />
+		
+        <source-file src="platform/ios/libYandexMobileMetrica.a" compiler-flags="-lYandexMobileMetrica" framework="true" />
+    </platform>
+	
 </plugin>

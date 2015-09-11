@@ -34,6 +34,7 @@ public class AppMetricaPlugin extends CordovaPlugin {
 						@Override
 						public void run() {
 							YandexMetrica.activate(cordova.getActivity().getApplicationContext(), devKey);				
+							YandexMetrica.reportEvent("activated");
 						}
 					});
             }
