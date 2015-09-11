@@ -26,13 +26,16 @@ public class AppMetricaPlugin extends CordovaPlugin {
     }
 
     private void activate(JSONArray parameters, final CallbackContext callbackContext) {
-        String devKey = null;
         try
         {
-            devKey = parameters.getString(0);
+            final String devKey = parameters.getString(0);
             if(devKey != null){
-                YandexMetrica.activate(cordova.getActivity().getApplicationContext(), devKey);				
-				YandexMetrica.reportEvent("activated");
+				cordova.getThreadPool().execute(new Runnable() {
+						@Override
+						public void run() {
+							YandexMetrica.activate(cordova.getActivity().getApplicationContext(), devKey);				
+						}
+					});
             }
         }
         catch (JSONException e)
