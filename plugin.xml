@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.appmetrica.cordova.plugins.appmetrica"
+    version="0.0.1">
+    <name>AppMetrica</name>
+    <description>AppMetrica cordova plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova</keywords>
+    <engines>
+        <engine name="cordova" version=">=3.3.0"/>
+    </engines>
+    <js-module src="www/AppMetrica.js" name="AppMetrica">
+        <clobbers target="window.plugins.appMetrica" />
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="AppMetricaPlugin" >
+                <param name="android-package" value="com.appmetrica.cordova.plugin.AppMetricaPlugin"/>
+            </feature>
+        </config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        </config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <receiver
+				android:name="com.yandex.metrica.MetricaEventHandler"
+				android:enabled="true"
+				android:exported="true">
+            
+				<intent-filter>
+					<action android:name="com.android.vending.INSTALL_REFERRER"/>
+				</intent-filter>
+			</receiver>
+        </config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<service
+				android:name="com.yandex.metrica.MetricaService"
+				android:enabled="true"
+				android:exported="true"
+				android:process=":Metrica">
+
+					<intent-filter>
+						<category android:name="android.intent.category.DEFAULT"/>
+						<action android:name="com.yandex.metrica.IMetricaService"/>
+						<data android:scheme="metrica"/>
+					</intent-filter>
+
+					<meta-data android:name="metrica:api:level" android:value="32"/>
+			</service>
+		</config-file>
+				
+		<source-file src="platform/android/com/appmetrica/cordova/plugin/AppMetricaPlugin.java" target-dir="src/com/appmetrica/cordova/plugin" />
+        <source-file src="platform/android/mobmetricalib-2.00.jar" target-dir="libs/"/>
+    </platform>
+</plugin>
