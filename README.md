@@ -1,10 +1,10 @@
-PhoneGap\XDK Cordova plug-in for Yandex Metrica 2.0
+п»їPhoneGap\XDK Cordova plug-in for Yandex Metrica 2.0
 
 To use call window.plugins.appMetrica.activate('key here');
 Android and iOS are supported
 
-Cordova плагин для Яндекс Метрики 2.0
+Cordova РїР»Р°РіРёРЅ РґР»СЏ РЇРЅРґРµРєСЃ РњРµС‚СЂРёРєРё 2.0
 
-Одна функция поддерживается, вызов:
+РћРґРЅР° С„СѓРЅРєС†РёСЏ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ, РІС‹Р·РѕРІ:
 window.plugins.appMetrica.activate('key here');
-Поддерживаются android и iOS
+РџРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ android Рё iOS
