@@ -17,7 +17,7 @@
     
     NSString* devKey = [command.arguments objectAtIndex:0];
 	
-	 [YMMYandexMetrica activateWithApiKey:@devKey];   
+	 [YMMYandexMetrica activateWithApiKey:devKey];
 };
 
 @end

@@ -69,13 +69,27 @@
         </config-file>
 
         <header-file src="platform/ios/AppMetricaPlugin.h" />
-        <header-file src="platform/ios/YandexMobileMetrica.h" />
-		<header-file src="platform/ios/YMMVersion.h" />
-		<header-file src="platform/ios/YMMYandexMetrica.h" />		
+        <header-file src="platform/ios/YandexMobileMetrica.h" target="YandexMobileMetrica.h"/>
+		<header-file src="platform/ios/YMMVersion.h" target="YMMVersion.h"/>
+		<header-file src="platform/ios/YMMYandexMetrica.h" target="YMMYandexMetrica.h"/>
 		
         <source-file src="platform/ios/AppMetricaPlugin.m" />
-		
-        <source-file src="platform/ios/libYandexMobileMetrica.a" compiler-flags="-lYandexMobileMetrica" framework="true" />
+
+        <source-file src="platform/ios/libYandexMobileMetrica.a" framework="true" />
+        <source-file src="platform/ios/libFMDB.a" framework="true" />
+        <source-file src="platform/ios/libKSCrash.a" framework="true" />
+        <source-file src="platform/ios/libprotobuf-c.a" framework="true" />
+
+        <framework src="libsqlite3.dylib" />
+        <framework src="libz.dylib" />
+        <framework src="libc++.dylib" />
+        <framework src="SystemConfiguration" />
+        <framework src="UIKit" />
+        <framework src="Foundation" />
+        <framework src="CoreTelephony" />
+        <framework src="CoreLocation" />
+        <framework src="CoreGraphics" />
+        <framework src="AdSupport" />
     </platform>
 	
 </plugin>
