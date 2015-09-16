@@ -6,6 +6,7 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
+import java.lang.Thread;
 
 import android.widget.Toast;
 
@@ -25,18 +26,34 @@ public class AppMetricaPlugin extends CordovaPlugin {
         return false;
     }
 
+    @Override
+    public void onPause(boolean multitasking) {
+        YandexMetrica.onPauseActivity(cordova.getActivity());
+    }
+
+    @Override
+    public void onResume(boolean multitasking) {
+        YandexMetrica.onResumeActivity(cordova.getActivity());
+    }
+
+    @Override
+    public void onDestroy() {
+        YandexMetrica.onPauseActivity(cordova.getActivity());
+    }
+
     private void activate(JSONArray parameters, final CallbackContext callbackContext) {
         try
         {
             final String devKey = parameters.getString(0);
             if(devKey != null){
 				cordova.getThreadPool().execute(new Runnable() {
-						@Override
-						public void run() {
-							YandexMetrica.activate(cordova.getActivity().getApplicationContext(), devKey);				
-							YandexMetrica.reportEvent("activated");
-						}
-					});
+                    @Override
+                    public void run() {
+                        YandexMetrica.activate(cordova.getActivity().getApplicationContext(), devKey);
+                        YandexMetrica.onResumeActivity(cordova.getActivity());
+                        YandexMetrica.reportEvent("activated");
+					}
+				});
             }
         }
         catch (JSONException e)
